@@ -28,6 +28,24 @@ export default class Game extends BaseGame {
     this.setEvents();
   }
 
+  getRandomLevel(): Level {
+    let index = Math.floor(Math.random() * this.levels.length);
+    return this.levels[index];
+  }
+
+  mayIHaveGoldenApple(): boolean {
+      let chance = 5;
+      let pick = Math.random() * 100;
+      return pick < chance;  
+
+  };
+
+  removeGrid (): void {
+    let grids = document.querySelectorAll('.vertical-grid, .horizontal-grid');
+    grids.forEach(item => Utils.removeNode(item));
+    this.gridVisible = false;
+  }
+
   get highScore (): number {
     return parseInt(localStorage.getItem('high-score') || '0', 10) || 0;
   }
